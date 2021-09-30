@@ -31,7 +31,6 @@
         android:background="@drawable/edit_text"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:text="@string/empty"
         android:textColor="@color/black"
         android:gravity="center"
         tools:ignore="LabelFor" />
@@ -44,6 +43,16 @@
         android:layout_marginTop="500dp"
         android:background="@drawable/edit_text"
         android:text="@string/input_value"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="570dp"
+        android:background="@drawable/edit_text"
+        android:text="@string/exit"
         android:textColor="@color/black" />
 
 </RelativeLayout>

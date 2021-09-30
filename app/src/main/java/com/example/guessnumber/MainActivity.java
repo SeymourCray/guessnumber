@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView Info;
     EditText Input;
     Button Button;
-    Integer number;
+    Button Button_2;
+    String stroke;
+    int number;
+    Boolean win;
     int random;
 
     @Override
@@ -22,15 +25,44 @@ public class MainActivity extends AppCompatActivity {
         Info = findViewById(R.id.info);
         Input = findViewById(R.id.input);
         Button = findViewById(R.id.button);
-        int random = ThreadLocalRandom.current().nextInt(1, 100);
+        Button_2 = findViewById(R.id.button_2);
+        win = Boolean.FALSE;
         onCLick();
     }
     public void onCLick (){
+        random = (int) (Math.random()*10) + 1;
+        Button_2.setOnClickListener(view ->{
+            finish();
+            System.exit(0);
+        });
         Button.setOnClickListener(view -> {
-         number = Integer.parseInt(Input.getText().toString());
-         if (number > 100) {
-       //      Info.setText(getResources());
-         }
+            if (win == Boolean.FALSE) {
+                stroke = Input.getText().toString();
+                if (stroke.equals("")) {
+                    Info.setText(getResources().getText(R.string.empty));
+                }
+                else {
+                    number = Integer.parseInt(stroke);
+                    Input.setText("");
+                    if (number > 10 || number < 1) {
+                        Info.setText(getResources().getText(R.string.error));
+                    } else if (number > random) {
+                        Info.setText(getResources().getText(R.string.ahead));
+                    } else if (number < random) {
+                        Info.setText(getResources().getText(R.string.behind));
+                    } else if (number == random) {
+                        Info.setText(getResources().getText(R.string.hit));
+                        win = Boolean.TRUE;
+                        Button.setText(getResources().getText(R.string.play_more));
+                    }
+                }
+            }
+            else {
+                win = Boolean.FALSE;
+                random = (int) (Math.random()*10) + 1;
+                Button.setText(getResources().getText(R.string.input_value));
+                Info.setText(getResources().getString(R.string.try_to_guess));
+            }
         });
     }
 }
