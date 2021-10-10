@@ -14,8 +14,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:text="@string/try_to_guess"
+        android:text="@string/try_to_guess_1"
         android:textColor="@color/white"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,33 +27,25 @@
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="430dp"
-        android:background="@drawable/edit_text"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="340dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:hint="@string/edit"
         android:importantForAutofill="no"
         android:inputType="number"
         android:textColor="@color/black"
-        android:gravity="center"
         tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="480dp"
         android:background="@drawable/edit_text"
         android:text="@string/input_value"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/button_2"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="570dp"
-        android:background="@drawable/edit_text"
-        android:text="@string/exit"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 </RelativeLayout>

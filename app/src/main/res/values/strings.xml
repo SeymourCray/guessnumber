@@ -5,8 +5,11 @@
     <string name="hit">В точку!</string>
     <string name="input_value">Ввести значение</string>
     <string name="play_more">Сыграть еще</string>
-    <string name="try_to_guess">Попробуйте угадать число (1, 10)</string>
+    <string name="try_to_guess_1">Попробуйте угадать число (1, 10)</string>
+    <string name="try_to_guess_2">Попробуйте угадать число (1, 100)</string>
     <string name="error">Неверный ввод!</string>
     <string name="exit">Выход</string>
     <string name="empty">Пусто</string>
+    <string name="level">Сменить уровень сложности</string>
+    <string name="edit">Вводить туть</string>
 </resources>

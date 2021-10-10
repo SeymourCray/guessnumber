@@ -1,6 +1,9 @@
 package com.example.guessnumber;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,11 +15,13 @@ public class MainActivity extends AppCompatActivity {
     TextView Info;
     EditText Input;
     Button Button;
-    Button Button_2;
     String stroke;
     int number;
+    Boolean level = Boolean.FALSE;
+    int up = 10;
     Boolean win;
     int random;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +30,59 @@ public class MainActivity extends AppCompatActivity {
         Info = findViewById(R.id.info);
         Input = findViewById(R.id.input);
         Button = findViewById(R.id.button);
-        Button_2 = findViewById(R.id.button_2);
         win = Boolean.FALSE;
         onCLick();
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0,0,0,"Новая игра");
+        menu.add(0,1,1,"Сменить уровень сложности");
+        menu.add(0,2,2,"Выйти");
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @SuppressLint({"SetTextI18n"})
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case 0:
+                win = Boolean.FALSE;
+                if (level == Boolean.FALSE){
+                    up = 10;
+                    Info.setText(getResources().getString(R.string.try_to_guess_1));
+                }
+                else {
+                    up = 100;
+                   Info.setText(getResources().getString(R.string.try_to_guess_2));
+                }
+                random = (int) (Math.random()*up) + 1;
+                break;
+            case 1:
+                if (level == Boolean.TRUE) {
+                    up = 10;
+                    level = Boolean.FALSE;
+                    Info.setText(getResources().getString(R.string.try_to_guess_1));
+                }
+                else {
+                    up = 100;
+                    level = Boolean.TRUE;
+                    Info.setText(getResources().getString(R.string.try_to_guess_2));
+                }
+                random = (int) (Math.random()*up) + 1;
+                break;
+            case 2:
+                finish();
+                System.exit(0);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     public void onCLick (){
-        random = (int) (Math.random()*10) + 1;
-        Button_2.setOnClickListener(view ->{
-            finish();
-            System.exit(0);
-        });
+        random = (int) (Math.random()*up) + 1;
         Button.setOnClickListener(view -> {
             if (win == Boolean.FALSE) {
                 stroke = Input.getText().toString();
@@ -44,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     number = Integer.parseInt(stroke);
                     Input.setText("");
-                    if (number > 10 || number < 1) {
+                    if (number > up || number < 1) {
                         Info.setText(getResources().getText(R.string.error));
                     } else if (number > random) {
                         Info.setText(getResources().getText(R.string.ahead));
@@ -59,9 +107,14 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 win = Boolean.FALSE;
-                random = (int) (Math.random()*10) + 1;
+                random = (int) (Math.random()*up) + 1;
+                if (up == 10){
+                    Info.setText(getResources().getString(R.string.try_to_guess_1));
+                }
+                else {
+                    Info.setText(getResources().getString(R.string.try_to_guess_2));
+                }
                 Button.setText(getResources().getText(R.string.input_value));
-                Info.setText(getResources().getString(R.string.try_to_guess));
             }
         });
     }
